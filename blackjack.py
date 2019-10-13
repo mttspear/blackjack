@@ -10,7 +10,7 @@ from writeFile import WriteFile
 class Blackjack(object):
     deck = []
     cardCounter = CardCounter()
-    deckCount = 8
+    deckCount = 1
     deckLocation = 1
     gamePlayers = []
     dealerUpCard = 0
@@ -44,9 +44,9 @@ class Blackjack(object):
 
     # Create The Deck        
     def createDeck(self):         
-        d = Deck(self.deckCount)
-        d.shuffelDeck()
-        self.deck = d
+        deck = Deck(self.deckCount)
+        deck.shuffelDeck()
+        self.deck = deck
     #make wagers 
     def makeWagers(self):
         #make wager
@@ -64,7 +64,8 @@ class Blackjack(object):
     # Deal    
     def deal(self): 
         #If Deck over X done resuffle
-        if self.deckLocation / float(self.deck.totalCards) > self.shuffelPercent:
+        deckCount = len(self.deck.fullDeck)
+        if (self.deckLocation / deckCount) > self.shuffelPercent:
             self.resetShuffle()
         #clear cards
         for gamer in self.gamePlayers:
@@ -101,7 +102,7 @@ class Blackjack(object):
                 self.deckLocation +=1
                 gamer.playerCards[1].append(self.deck.fullDeck[self.deckLocation])
                 self.deckLocation +=1
-                print gamer.playerCards
+                print (gamer.playerCards)
                 quit()
             #play the hands
             for hand in gamer.playerCards:
@@ -153,10 +154,8 @@ class Blackjack(object):
                 dealerCards += str(card.name) + ' '
             writeFile = WriteFile()
             #get remaining cards
-            foo = 'matt'
-            print "this is a variable with r - %r" % card.name
-            print "this is a variable with s - %s" % card.name
-            quit()
+            #print "this is a variable with r - %r" % card.name
+            #print "this is a variable with s - %s" % card.name
 
             remianingCards = ''
             deckLocation = self.deckLocation
@@ -165,5 +164,5 @@ class Blackjack(object):
                 deckLocation += 1
             gameArray = [game,dealerHand, dealerCards, gamer.name, str(gamer.cardTotal), cards, gamer.wager, gamer.balance, self.cardCounter.runningCount, self.cardCounter.deckRemaining, str(self.cardCounter.trueCount), str(remianingCards)]
             writeFile.logData(gameArray)
-            print 'deck-location: ' + str(self.deckLocation) + ' game-status: ' + game + ' dealer-hand:' + str(dealerHand)+ ' dealer-cards' + dealerCards + ' player-hand:' + str(gamer.cardTotal) + ' player-cards:' + cards + 'wager:' +str(gamer.wager) + 'count:' + str(self.cardCounter.trueCount)
+            #print 'deck-location: ' + str(self.deckLocation) + ' game-status: ' + game + ' dealer-hand:' + str(dealerHand)+ ' dealer-cards' + dealerCards + ' player-hand:' + str(gamer.cardTotal) + ' player-cards:' + cards + 'wager:' +str(gamer.wager) + 'count:' + str(self.cardCounter.trueCount)
             game = 'Tie'
