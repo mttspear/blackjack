@@ -30,7 +30,7 @@ class Player(object):
         blackjackStrategy = BlackjackStrategy()
         blackjackStrategy.cards =  self.cards
         if blackjackStrategy.checkSame():
-            return blackjackStrategy.checkSplit(dealerUpCard);
+            return blackjackStrategy.checkSplit(dealerUpCard)
         else:
             return False
 
