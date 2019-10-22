@@ -103,9 +103,11 @@ class Blackjack(object):
             #play the hands
             for hand in gamer.playerCards:
                 gamer.getPlayerStatus(self.dealerUpCard)
+                pprint(gamer.name + gamer.playerStatus)
                 while gamer.playerStatus == 'Hit':
                     gamer.cards.append(self.deck.fullDeck[self.deckLocation])
                     self.deckLocation +=1
+                    pprint("deckLoc:"+str(self.deckLocation))
                     gamer.getPlayerStatus(self.dealerUpCard)
     # Evaluate Hands
     def scoreHands(self):

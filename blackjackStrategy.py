@@ -1,6 +1,7 @@
 """
 high level support for doing this and that.
 """
+from pprint import pprint
 
 class BlackjackStrategy(object):
     action = "Hit"
@@ -16,6 +17,7 @@ class BlackjackStrategy(object):
     def getCardTotal(self):
         self.setCardCount()
         for card in self.cards:
+            pprint(card.value)
             self.cardSum += card.value
             # Check for ace
             if card.secondValue != None:
@@ -45,6 +47,7 @@ class BlackjackStrategy(object):
             self.action = 'Stand'
     #get player decision
     def getAction(self, dealerUpcard):
+        pprint("cardSum" +  str(self.cardSum ))
         #get card total
         self.getCardTotal()
         self.dealerUpcard = dealerUpcard.value

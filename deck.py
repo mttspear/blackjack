@@ -57,8 +57,10 @@ class Deck:
         for suit in self.suits:
             for card in self.cards:
                 name = self.cards[card]['name']
+                value = self.cards[card]['value']
+                secondValue = self.cards[card]['secondValue']
                 cardObj = Card()
-                cardObj.make_card(name,i, 11,1, suit)
+                cardObj.make_card(name,i, value, secondValue, suit)
                 self.fullDeck.append(cardObj)
                 i+= 1
   
