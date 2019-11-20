@@ -28,7 +28,6 @@ class Blackjack(object):
         self.scoreHands()
     # Create the Players 
     def createPlayers(self):    
-
         playerCount = cfg.playerDetail['count']
         players = cfg.players
         for configPlayer in cfg.players :
@@ -41,7 +40,6 @@ class Blackjack(object):
             p.cards = []
             self.gamePlayers.append(p)
         self.gamePlayers.sort(key=lambda dec: dec.seatPosition)
-
     # Create The Deck        
     def createDeck(self):         
         deck = Deck(self.deckCount)
@@ -102,14 +100,14 @@ class Blackjack(object):
                 self.deckLocation +=1
                 gamer.playerCards[1].append(self.deck.fullDeck[self.deckLocation])
                 self.deckLocation +=1
-                print (gamer.playerCards)
-                quit()
             #play the hands
             for hand in gamer.playerCards:
                 gamer.getPlayerStatus(self.dealerUpCard)
+                pprint(gamer.name + gamer.playerStatus)
                 while gamer.playerStatus == 'Hit':
                     gamer.cards.append(self.deck.fullDeck[self.deckLocation])
                     self.deckLocation +=1
+                    pprint("deckLoc:"+str(self.deckLocation))
                     gamer.getPlayerStatus(self.dealerUpCard)
     # Evaluate Hands
     def scoreHands(self):
@@ -153,16 +151,13 @@ class Blackjack(object):
             for card in self.gamePlayers[dealerIndex].cards:
                 dealerCards += str(card.name) + ' '
             writeFile = WriteFile()
-            #get remaining cards
-            #print "this is a variable with r - %r" % card.name
-            #print "this is a variable with s - %s" % card.name
 
             remianingCards = ''
             deckLocation = self.deckLocation
-            while deckLocation < self.deck.deckCount:
+            deckCount = len(self.deck.fullDeck)
+            while deckLocation < deckCount:
                 remianingCards += ',' + self.deck.fullDeck[deckLocation].name
                 deckLocation += 1
             gameArray = [game,dealerHand, dealerCards, gamer.name, str(gamer.cardTotal), cards, gamer.wager, gamer.balance, self.cardCounter.runningCount, self.cardCounter.deckRemaining, str(self.cardCounter.trueCount), str(remianingCards)]
             writeFile.logData(gameArray)
-            #print 'deck-location: ' + str(self.deckLocation) + ' game-status: ' + game + ' dealer-hand:' + str(dealerHand)+ ' dealer-cards' + dealerCards + ' player-hand:' + str(gamer.cardTotal) + ' player-cards:' + cards + 'wager:' +str(gamer.wager) + 'count:' + str(self.cardCounter.trueCount)
             game = 'Tie'

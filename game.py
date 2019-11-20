@@ -4,12 +4,12 @@ from writeFile import WriteFile
 bj = Blackjack()
 
 i = 0
-y = 10
+y = 1000
 
 #create the log
-#writeFile = WriteFile()
-#headers = ['game_status','dealer_total', 'dealer_cards','player_name', 'player_total', 'player_cards', 'player_wager', 'player_balance','running_count','deck_remaining', 'true_count', 'remaining_cards']
-#writeFile.createFile(headers)
+writeFile = WriteFile()
+headers = ['game_status','dealer_total', 'dealer_cards','player_name', 'player_total', 'player_cards', 'player_wager', 'player_balance','running_count','deck_remaining_percent', 'true_count', 'remaining_cards']
+writeFile.createFile(headers)
 
 
 while i < y:

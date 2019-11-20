@@ -5,7 +5,7 @@ class CardCounter(object):
     changeAmmount = 0  
 
     def setCount(self, card, deckRemaining):
-        self.deckRemaining =  deckRemaining;
+        self.deckRemaining =  deckRemaining
         if card.value >= 2 and card.value <= 6:
             self.runningCount += 1
         elif card.value >= 7 and card.value <= 9:
@@ -17,7 +17,6 @@ class CardCounter(object):
         #print 'cardValue:' + str(card.value) + 'runningCount:' + str(self.runningCount) + 'trueCount:' + str(self.trueCount)
 
     def getWager(self, wager, baseWager):
-        
         newWager = 0
         if self.trueCount <= -4:
            newWager =  baseWager * 5
